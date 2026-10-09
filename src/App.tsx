@@ -72,13 +72,15 @@ const MainContent: React.FC = () => {
 
     if (activeRole === 'faculty') {
       switch (activeTab) {
-        case 'overview': return <FacultyDashboard onNavigateTab={setActiveTab} />;
+        case 'overview': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="overview" />;
         case 'attendance': return <FacultyAttendanceView />;
-        case 'students': return <FacultyDashboard onNavigateTab={setActiveTab} />;
-        case 'insights': return <FacultyDashboard onNavigateTab={setActiveTab} />;
-        case 'support-needed': return <FacultyDashboard onNavigateTab={setActiveTab} />;
-        case 'interventions': return <FacultyDashboard onNavigateTab={setActiveTab} />;
-        default: return <FacultyDashboard onNavigateTab={setActiveTab} />;
+        case 'students': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="students" />;
+        case 'insights': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="insights" />;
+        case 'support-needed': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="support-needed" />;
+        case 'interventions': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="interventions" />;
+        case 'subject-performance': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="subject-performance" />;
+        case 'reports': return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="reports" />;
+        default: return <FacultyDashboard onNavigateTab={setActiveTab} activeTab="overview" />;
       }
     }
 
