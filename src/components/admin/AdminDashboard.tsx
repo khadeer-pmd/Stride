@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { RiskBadge } from '../common/RiskBadge';
+import { MotionCard } from '../common/MotionCard';
 import { Users, PieChart, ShieldAlert, HeartHandshake, TrendingUp, FileSpreadsheet, CheckCircle2 } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
@@ -46,31 +47,31 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateTab })
         </button>
       </div>
 
-      {/* Overview Metrics Row */}
+      {/* Overview Metrics Row with 3D Motion */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-[#D1E5E1] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#D1E5E1] p-5 shadow-soft border border-[#D1E5E1]">
           <span className="text-xs font-bold text-[#3B6E63] uppercase">Total Enrolled Students</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.totalStudents}</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Across 4 departments</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#FFE7A5] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#FFE7A5] p-5 shadow-soft border border-[#FFE7A5]">
           <span className="text-xs font-bold text-[#8C6D1F] uppercase">Overall Academic Avg</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.avgAcademicPerformance}%</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Stable term average</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#F9D4E5] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#F9D4E5] p-5 shadow-soft border border-[#F9D4E5]">
           <span className="text-xs font-bold text-[#A84B68] uppercase">Attendance Rate</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.avgAttendance}%</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Institutional lecture average</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#DCCEEB] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#DCCEEB] p-5 shadow-soft border border-[#DCCEEB]">
           <span className="text-xs font-bold text-[#62477E] uppercase">Total Interventions</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.openInterventions + metrics.completedInterventions}</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">{metrics.completedInterventions} completed successfully</p>
-        </div>
+        </MotionCard>
       </div>
 
       {/* Grid: Risk Distribution Pie Chart & Department Heatmap */}

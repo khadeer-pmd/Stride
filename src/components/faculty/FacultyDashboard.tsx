@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { RiskBadge } from '../common/RiskBadge';
 import { TrendIndicator } from '../common/TrendIndicator';
+import { MotionCard } from '../common/MotionCard';
 import { 
   Users, 
   AlertTriangle, 
@@ -111,33 +112,33 @@ export const FacultyDashboard: React.FC<FacultyDashboardProps> = ({ onNavigateTa
         </div>
       </div>
 
-      {/* Metrics Row */}
+      {/* Metrics Row with 3D Motion */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-[#D1E5E1] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#D1E5E1] p-5 shadow-soft border border-[#D1E5E1]">
           <span className="text-xs font-bold text-[#3B6E63] uppercase">Assigned Students</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{students.length}</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Computer Science & Eng.</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#F9D4E5] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#F9D4E5] p-5 shadow-soft border border-[#F9D4E5]">
           <span className="text-xs font-bold text-[#A84B68] uppercase">Students Needing Review</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">
             {students.filter(s => s.riskAssessment.category !== 'Low').length}
           </h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Silent struggle & high risk</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#FFE7A5] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#FFE7A5] p-5 shadow-soft border border-[#FFE7A5]">
           <span className="text-xs font-bold text-[#8C6D1F] uppercase">Average Performance</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.avgAcademicPerformance}%</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Across all midterms</p>
-        </div>
+        </MotionCard>
 
-        <div className="bg-[#DCCEEB] p-5 rounded-3xl shadow-soft">
+        <MotionCard className="bg-[#DCCEEB] p-5 shadow-soft border border-[#DCCEEB]">
           <span className="text-xs font-bold text-[#62477E] uppercase">Active Interventions</span>
           <h3 className="text-3xl font-extrabold text-[#202421] mt-1">{metrics.openInterventions}</h3>
           <p className="text-[11px] text-[#202421]/70 mt-1">Remedial labs & mentoring</p>
-        </div>
+        </MotionCard>
       </div>
 
       {/* SECTION A: STUDENTS NEEDING ATTENTION TABLE */}

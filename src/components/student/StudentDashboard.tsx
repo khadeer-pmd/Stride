@@ -2,6 +2,7 @@ import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { RiskBadge } from '../common/RiskBadge';
 import { TrendIndicator } from '../common/TrendIndicator';
+import { MotionCard } from '../common/MotionCard';
 import { 
   CheckCircle2, 
   Clock, 
@@ -64,14 +65,17 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
         </div>
       </div>
 
-      {/* SECTION A: YOUR ACADEMIC OVERVIEW CARDS (Pastel Cards) */}
+      {/* SECTION A: YOUR ACADEMIC OVERVIEW CARDS (Pastel Cards with 3D Motion) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Current Average */}
-        <div className="bg-[#D1E5E1] p-5 rounded-3xl shadow-soft flex flex-col justify-between">
+        <MotionCard
+          onClick={() => onNavigateTab('subjects')}
+          className="bg-[#D1E5E1] p-5 shadow-soft border border-[#D1E5E1]"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-[#3B6E63] uppercase tracking-wider">Academic Average</span>
-            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#3B6E63]">
+            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#3B6E63] shadow-xs">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
@@ -79,13 +83,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
             <h3 className="text-3xl font-extrabold text-[#202421]">{currentStudent.academicAverage}%</h3>
             <p className="text-[11px] text-[#202421]/70 mt-1">Across 4 registered subjects</p>
           </div>
-        </div>
+        </MotionCard>
 
         {/* Attendance Percentage */}
-        <div className="bg-[#FFE7A5] p-5 rounded-3xl shadow-soft flex flex-col justify-between">
+        <MotionCard
+          onClick={() => onNavigateTab('attendance')}
+          className="bg-[#FFE7A5] p-5 shadow-soft border border-[#FFE7A5]"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-[#8C6D1F] uppercase tracking-wider">Attendance Rate</span>
-            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#8C6D1F]">
+            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#8C6D1F] shadow-xs">
               <Clock className="w-4 h-4" />
             </div>
           </div>
@@ -93,13 +100,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
             <h3 className="text-3xl font-extrabold text-[#202421]">{currentStudent.attendancePercentage}%</h3>
             <p className="text-[11px] text-[#202421]/70 mt-1">Consistency across lectures</p>
           </div>
-        </div>
+        </MotionCard>
 
         {/* Completed Assignments */}
-        <div className="bg-[#F9D4E5] p-5 rounded-3xl shadow-soft flex flex-col justify-between">
+        <MotionCard
+          onClick={() => onNavigateTab('planner')}
+          className="bg-[#F9D4E5] p-5 shadow-soft border border-[#F9D4E5]"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-[#A84B68] uppercase tracking-wider">Completed Tasks</span>
-            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#A84B68]">
+            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#A84B68] shadow-xs">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
@@ -109,13 +119,16 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
             </h3>
             <p className="text-[11px] text-[#202421]/70 mt-1">{currentStudent.pendingAssignments} pending submission</p>
           </div>
-        </div>
+        </MotionCard>
 
         {/* Goals Achieved */}
-        <div className="bg-[#DCCEEB] p-5 rounded-3xl shadow-soft flex flex-col justify-between">
+        <MotionCard
+          onClick={() => onNavigateTab('goals')}
+          className="bg-[#DCCEEB] p-5 shadow-soft border border-[#DCCEEB]"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-[#62477E] uppercase tracking-wider">Small Wins</span>
-            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#62477E]">
+            <div className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center text-[#62477E] shadow-xs">
               <Award className="w-4 h-4" />
             </div>
           </div>
@@ -123,7 +136,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
             <h3 className="text-3xl font-extrabold text-[#202421]">{currentStudent.goalsAchieved}</h3>
             <p className="text-[11px] text-[#202421]/70 mt-1">Milestones unlocked this semester</p>
           </div>
-        </div>
+        </MotionCard>
 
       </div>
 
