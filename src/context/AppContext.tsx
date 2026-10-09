@@ -43,6 +43,7 @@ interface AppContextType {
   isAuthenticated: boolean;
   currentUser: User;
   login: (role: UserRole, studentId?: string) => void;
+  registerUser: (name: string, email: string, password: string, role: UserRole) => void;
   logout: () => void;
   students: StudentProfile[];
   currentStudent: StudentProfile;
@@ -138,6 +139,109 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setCurrentUser(MOCK_USERS[2]); // Dean Robert Vance
       addToast(`Welcome back, Dean Robert Vance!`, 'success');
     }
+  };
+
+  const registerUser = (name: string, email: string, password: string, role: UserRole) => {
+    setActiveRole(role);
+    setIsAuthenticated(true);
+
+    if (role === 'student') {
+      const newStudentId = `std-${Date.now()}`;
+      const newStudent: StudentProfile = {
+        id: newStudentId,
+        name,
+        studentId: `CS2026-${Math.floor(100 + Math.random() * 900)}`,
+        department: 'Computer Science',
+        semester: 5,
+        email,
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+        academicAverage: 78,
+        attendancePercentage: 88,
+        completedAssignments: 12,
+        pendingAssignments: 3,
+        totalAssignments: 15,
+        goalsAchieved: 5,
+        assignedMentor: 'Dr. Sarah Jenkins',
+        subjects: [
+          {
+            subjectId: 'sub-math',
+            subjectName: 'Mathematics & Calculus IV',
+            code: 'MATH-401',
+            currentScore: 71,
+            previousScore: 84,
+            trend: 'declining',
+            attendance: 82,
+            instructorName: 'Dr. Sarah Jenkins',
+            suggestedAction: 'Review partial differential equations and practice 5 integration problems weekly.',
+            topicsToReview: ['Vector Calculus', 'Partial Derivatives']
+          },
+          {
+            subjectId: 'sub-algo',
+            subjectName: 'Data Structures & Algorithms',
+            code: 'CS-302',
+            currentScore: 88,
+            previousScore: 82,
+            trend: 'improving',
+            attendance: 92,
+            instructorName: 'Prof. Alan Turing',
+            suggestedAction: 'Practice graph traversal algorithms in Python.',
+            topicsToReview: ['Graph Traversal', 'Dynamic Programming']
+          },
+          {
+            subjectId: 'sub-os',
+            subjectName: 'Operating Systems',
+            code: 'CS-304',
+            currentScore: 74,
+            previousScore: 74,
+            trend: 'stable',
+            attendance: 85,
+            instructorName: 'Dr. Linus Torvalds',
+            suggestedAction: 'Read thread safety and mutex synchronization chapter.',
+            topicsToReview: ['Concurrency', 'Deadlocks']
+          }
+        ],
+        assessments: [
+          { id: `asm-${Date.now()}-1`, name: 'Quiz 1: Limits & Vectors', subjectId: 'sub-math', subjectName: 'Mathematics', score: 86, maxScore: 100, date: '2026-08-15', type: 'Quiz' },
+          { id: `asm-${Date.now()}-2`, name: 'Midterm 1: Integration', subjectId: 'sub-math', subjectName: 'Mathematics', score: 78, maxScore: 100, date: '2026-09-02', type: 'Midterm' },
+          { id: `asm-${Date.now()}-3`, name: 'Quiz 2: Partial Derivatives', subjectId: 'sub-math', subjectName: 'Mathematics', score: 69, maxScore: 100, date: '2026-09-20', type: 'Quiz' },
+          { id: `asm-${Date.now()}-4`, name: 'Midterm 2: Differential Equations', subjectId: 'sub-math', subjectName: 'Mathematics', score: 58, maxScore: 100, date: '2026-10-04', type: 'Midterm' }
+        ],
+        studyTasks: [
+          { id: `st-${Date.now()}-1`, title: 'Revise Mathematics vector calculus notes', subjectName: 'Mathematics', durationMinutes: 25, completed: false, priority: 'high', category: 'revision', dueDate: 'Today' },
+          { id: `st-${Date.now()}-2`, title: 'Practice 5 graph algorithms', subjectName: 'Data Structures', durationMinutes: 30, completed: true, priority: 'medium', category: 'practice', dueDate: 'Today' }
+        ],
+        riskAssessment: {
+          score: 43,
+          category: 'Medium',
+          factors: { performanceRisk: 25, declineRisk: 40, attendanceRisk: 15, assignmentRisk: 20 },
+          explanation: 'Mathematics score dropped 13% across recent midterms.',
+          hasMissingData: false,
+          silentStruggleDetected: true,
+          lastUpdated: new Date().toISOString()
+        },
+        interventions: []
+      };
+
+      setStudents(prev => [newStudent, ...prev]);
+      setCurrentStudentId(newStudentId);
+      setCurrentUser({
+        id: newStudentId,
+        name,
+        email,
+        role: 'student',
+        department: 'Computer Science'
+      });
+    } else {
+      setCurrentUser({
+        id: `usr-${Date.now()}`,
+        name,
+        email,
+        role,
+        department: role === 'faculty' ? 'Computer Science & Engineering' : 'Academic Administration'
+      });
+    }
+
+    addToast(`Account registered successfully! Welcome to STRIDE, ${name}.`, 'success');
   };
 
   const logout = () => {
@@ -408,6 +512,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         isAuthenticated,
         currentUser,
         login,
+        registerUser,
         logout,
         students,
         currentStudent,

@@ -181,45 +181,55 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigateTa
         </div>
 
         {/* Subjects Needing Attention */}
-        <div className="lg:col-span-5 bg-[#FFFFFF] dark:bg-[#1A2220] p-6 rounded-3xl border border-[#E9EEEB] dark:border-[#293431] shadow-soft space-y-4">
+        <div className="lg:col-span-5 bg-[#FFFFFF] p-6 rounded-3xl border border-[#E9EEEB] shadow-soft space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-[#202421] dark:text-[#F0F4F2]">
+            <h3 className="text-base font-bold text-[#202421]">
               Subjects Needing Attention
             </h3>
-            <span className="text-xs text-[#777F7B] dark:text-[#9DA8A3]">Personalized</span>
+            <span className="text-xs text-[#777F7B] font-medium">Personalized</span>
           </div>
 
           <div className="space-y-3">
-            {currentStudent.subjects.map((sub) => (
-              <div
-                key={sub.subjectId}
-                className={`p-4 rounded-2xl border transition-all ${
-                  sub.trend === 'declining'
-                    ? 'bg-[#F9D4E5]/40 border-[#D97979]/30'
-                    : 'bg-[#E8F2F0] dark:bg-[#25302C] border-transparent'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-[#202421] dark:text-[#F0F4F2]">
-                    {sub.subjectName}
-                  </span>
-                  <TrendIndicator trend={sub.trend} />
-                </div>
-
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-lg font-extrabold text-[#202421] dark:text-[#F0F4F2]">
-                    {sub.currentScore}%
-                  </span>
-                  <span className="text-xs text-[#777F7B] dark:text-[#9DA8A3]">
-                    (Prev: {sub.previousScore}%)
-                  </span>
-                </div>
-
-                <p className="text-xs text-[#777F7B] dark:text-[#9DA8A3] leading-relaxed">
-                  💡 {sub.suggestedAction}
-                </p>
+            {(!currentStudent?.subjects || currentStudent.subjects.length === 0) ? (
+              <div className="p-6 bg-[#E8F2F0]/50 rounded-2xl border border-[#D1E5E1] text-center space-y-2">
+                <CheckCircle2 className="w-8 h-8 text-[#73AFA0] mx-auto" />
+                <h4 className="text-xs font-bold text-neutral-800">All Subjects On Track</h4>
+                <p className="text-[11px] text-neutral-500">No declining performance trends detected across your enrolled courses.</p>
               </div>
-            ))}
+            ) : (
+              [...currentStudent.subjects]
+                .sort((a, b) => (a.trend === 'declining' ? -1 : 1))
+                .map((sub) => (
+                  <div
+                    key={sub.subjectId}
+                    className={`p-4 rounded-2xl border transition-all ${
+                      sub.trend === 'declining'
+                        ? 'bg-[#F9D4E5]/40 border-[#D97979]/40'
+                        : 'bg-[#E8F2F0] border-[#D1E5E1]/60'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-bold text-[#202421]">
+                        {sub.subjectName}
+                      </span>
+                      <TrendIndicator trend={sub.trend} />
+                    </div>
+
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className="text-lg font-extrabold text-[#202421]">
+                        {sub.currentScore}%
+                      </span>
+                      <span className="text-xs text-[#777F7B]">
+                        (Prev: {sub.previousScore}%)
+                      </span>
+                    </div>
+
+                    <p className="text-xs text-[#777F7B] leading-relaxed">
+                      💡 {sub.suggestedAction}
+                    </p>
+                  </div>
+                ))
+            )}
           </div>
         </div>
 
