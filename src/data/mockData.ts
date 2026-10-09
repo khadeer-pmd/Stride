@@ -30,21 +30,52 @@ export const MOCK_USERS: User[] = [
   }
 ];
 
-export const MOCK_ATTENDANCE_RECORDS: AttendanceRecord[] = [
-  // Alex Rivera Oct 2026 attendance
-  { id: 'att-101', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-01', status: 'present', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller' },
-  { id: 'att-102', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-02', status: 'present', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
-  { id: 'att-103', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-05', status: 'absent', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller', remarks: 'Unexcused absence' },
-  { id: 'att-104', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-06', status: 'present', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance' },
-  { id: 'att-105', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Computer Networks', subjectCode: 'CS306', date: '2026-10-07', status: 'late', sessionPeriod: '02:00 PM - 03:00 PM', facultyName: 'Dr. Helen Carter', remarks: 'Arrived 15 mins late' },
-  { id: 'att-106', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-08', status: 'present', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller' },
-  { id: 'att-107', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-09', status: 'present', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
-  { id: 'att-108', studentId: 'std-101', studentName: 'Alex Rivera', className: 'CS-5A', subjectName: 'General University Holiday', subjectCode: 'HOLIDAY', date: '2026-10-11', status: 'holiday', facultyName: 'Institution' },
+export function generateDemoAttendance(studentId: string, studentName: string, className = 'CS-5A'): AttendanceRecord[] {
+  return [
+    // Oct 1 (Thu)
+    { id: `att-${studentId}-101`, studentId, studentName, className, subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-01', status: 'present', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller' },
+    { id: `att-${studentId}-102`, studentId, studentName, className, subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-01', status: 'present', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
 
-  // Liam Patel Oct 2026 attendance
-  { id: 'att-201', studentId: 'std-103', studentName: 'Liam Patel', className: 'CS-5A', subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-01', status: 'absent', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
-  { id: 'att-202', studentId: 'std-103', studentName: 'Liam Patel', className: 'CS-5A', subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-05', status: 'absent', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
-  { id: 'att-203', studentId: 'std-103', studentName: 'Liam Patel', className: 'CS-5A', subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-06', status: 'late', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance' }
+    // Oct 2 (Fri)
+    { id: `att-${studentId}-103`, studentId, studentName, className, subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-02', status: 'present', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance' },
+    { id: `att-${studentId}-104`, studentId, studentName, className, subjectName: 'Computer Networks', subjectCode: 'CS306', date: '2026-10-02', status: 'present', sessionPeriod: '02:00 PM - 03:00 PM', facultyName: 'Dr. Helen Carter' },
+
+    // Oct 3 (Sat)
+    { id: `att-${studentId}-105`, studentId, studentName, className, subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-03', status: 'present', sessionPeriod: '09:30 AM - 10:30 AM', facultyName: 'Dr. Sarah Jenkins' },
+
+    // Oct 4 (Sun) - Sunday Holiday
+    { id: `att-${studentId}-106`, studentId, studentName, className, subjectName: 'Sunday Holiday', subjectCode: 'HOLIDAY', date: '2026-10-04', status: 'holiday', facultyName: 'Institution', remarks: 'Sunday - Weekly Holiday' },
+
+    // Oct 5 (Mon)
+    { id: `att-${studentId}-107`, studentId, studentName, className, subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-05', status: 'absent', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller', remarks: 'Unexcused absence' },
+    { id: `att-${studentId}-108`, studentId, studentName, className, subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-05', status: 'present', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance' },
+
+    // Oct 6 (Tue)
+    { id: `att-${studentId}-109`, studentId, studentName, className, subjectName: 'Computer Networks', subjectCode: 'CS306', date: '2026-10-06', status: 'present', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Helen Carter' },
+    { id: `att-${studentId}-110`, studentId, studentName, className, subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-06', status: 'present', sessionPeriod: '02:00 PM - 03:00 PM', facultyName: 'Dr. Sarah Jenkins' },
+
+    // Oct 7 (Wed)
+    { id: `att-${studentId}-111`, studentId, studentName, className, subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-07', status: 'late', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller', remarks: 'Arrived 15 mins late' },
+    { id: `att-${studentId}-112`, studentId, studentName, className, subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-07', status: 'absent', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance', remarks: 'Medical Leave requested' },
+
+    // Oct 8 (Thu)
+    { id: `att-${studentId}-113`, studentId, studentName, className, subjectName: 'Data Structures & Algorithms', subjectCode: 'CS302', date: '2026-10-08', status: 'present', sessionPeriod: '10:15 AM - 11:15 AM', facultyName: 'Dr. Sarah Jenkins' },
+    { id: `att-${studentId}-114`, studentId, studentName, className, subjectName: 'Computer Networks', subjectCode: 'CS306', date: '2026-10-08', status: 'present', sessionPeriod: '02:00 PM - 03:00 PM', facultyName: 'Dr. Helen Carter' },
+
+    // Oct 9 (Fri) - Previous/Current Day
+    { id: `att-${studentId}-115`, studentId, studentName, className, subjectName: 'Mathematics & Calculus III', subjectCode: 'MATH301', date: '2026-10-09', status: 'present', sessionPeriod: '09:00 AM - 10:00 AM', facultyName: 'Prof. David Miller' },
+    { id: `att-${studentId}-116`, studentId, studentName, className, subjectName: 'Operating Systems', subjectCode: 'CS304', date: '2026-10-09', status: 'present', sessionPeriod: '11:30 AM - 12:30 PM', facultyName: 'Prof. Alan Vance' },
+
+    // Sundays in October (Oct 11, Oct 18, Oct 25)
+    { id: `att-${studentId}-sun11`, studentId, studentName, className, subjectName: 'Sunday Holiday', subjectCode: 'HOLIDAY', date: '2026-10-11', status: 'holiday', facultyName: 'Institution', remarks: 'Sunday - Weekly Holiday' },
+    { id: `att-${studentId}-sun18`, studentId, studentName, className, subjectName: 'Sunday Holiday', subjectCode: 'HOLIDAY', date: '2026-10-18', status: 'holiday', facultyName: 'Institution', remarks: 'Sunday - Weekly Holiday' },
+    { id: `att-${studentId}-sun25`, studentId, studentName, className, subjectName: 'Sunday Holiday', subjectCode: 'HOLIDAY', date: '2026-10-25', status: 'holiday', facultyName: 'Institution', remarks: 'Sunday - Weekly Holiday' }
+  ];
+}
+
+export const MOCK_ATTENDANCE_RECORDS: AttendanceRecord[] = [
+  ...generateDemoAttendance('std-101', 'Alex Rivera'),
+  ...generateDemoAttendance('std-103', 'Liam Patel')
 ];
 
 export const MOCK_NOTIFICATIONS: AppNotification[] = [

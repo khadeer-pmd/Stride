@@ -16,7 +16,8 @@ import {
   MOCK_SUPPORT_REQUESTS, 
   INITIAL_METRICS,
   MOCK_ATTENDANCE_RECORDS,
-  MOCK_NOTIFICATIONS
+  MOCK_NOTIFICATIONS,
+  generateDemoAttendance
 } from '../data/mockData';
 import { calculateRiskAssessment } from '../lib/riskEngine';
 import { 
@@ -222,6 +223,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         interventions: []
       };
 
+      const newStudentAttendance = generateDemoAttendance(newStudentId, name);
+      newStudent.attendanceRecords = newStudentAttendance;
+
+      setAttendanceRecords(prev => [...newStudentAttendance, ...prev]);
       setStudents(prev => [newStudent, ...prev]);
       setCurrentStudentId(newStudentId);
       setCurrentUser({
